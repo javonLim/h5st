@@ -1,5 +1,6 @@
 const CryptJS = require('crypto-js');
 
+
 var ParamsSign = function() {
     'use strict';
     function _4o1cu(s) {
