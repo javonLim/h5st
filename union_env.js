@@ -1,43 +1,6 @@
 delete __dirname;
 delete __filename;
 
-//代理器模版
-function watch(obj, name) {
-    return new Proxy(obj, {
-        get: function (target, property, receiver) {
-            const value = target[property];
-            const type = typeof value;
-            if (type === "symbol") {
-                // 获取 Symbol 的描述，如果没有描述则显示 'no description'
-                const symbolDescription = property.description || 'no description';
-                console.log('读取:', name,'.', property, '==>', value ,'属性值类型: Symbol');
-            } else if (type === "function") {
-                // 对于函数，我们可以打印函数名，如果有的话
-                const functionName = value.name || 'anonymous';
-                console.log(`读取: ${name}.${property.toString()} , 函数名: ${functionName}`);
-            } else {
-                // if(name==='window' &&  String(property)==='Symbol(Symbol.toPrimitive)' ) debugger;
-                // if(property == "all") debugger;
-                // console.log(`读取: ${name}.${String(property)} , 属性值: ${value}, 属性值类型: ${type}`);
-                console.log("读取:",`${name}.${property}`, "属性类型：", typeof property, "属性值：",value, "属性值类型：", type);
-            }
-            return value;
-        },
-        set: (target, property, newValue, receiver) => {
-            const valueType = typeof newValue;
-            if (valueType === "symbol") {
-                // 获取新设置的 Symbol 的描述
-                const symbolDescription = newValue.description || 'no description';
-                console.log(`设置: ${name}.${String(property)} , 属性值类型: Symbol , 属性值描述: ${symbolDescription}`);
-            } else {
-                // console.log(`设置: ${name}.${String(property)} , 属性值: ${newValue} , 属性值类型: ${valueType}`);
-                console.log("设置:", `${name}.${property}`, "属性类型：", typeof property, "属性值：",newValue, "属性值类型：", valueType);
-
-            }
-            return Reflect.set(target, property, newValue, receiver);
-        }
-    });
-}
 function Window() {}
 
 // 删除浏览器中不存在的对象
@@ -548,13 +511,5 @@ window.History = History;
 //   return this.length = e < 0 ? this.length + e : e,this.push.apply(this, n)
 // }
 
-window = watch(window, 'window');
-document = watch(document, 'document');
-location = watch(location, 'location');
-navigator = watch(navigator, 'navigator');
-localStorage = watch(localStorage, 'localStorage');
-screen = watch(screen, 'screen');
-history = watch(history, 'history');
-Element = watch(Element, 'Element');
 
 
