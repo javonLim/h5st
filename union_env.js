@@ -505,6 +505,7 @@ History = function(){};
 history = new History();
 window.History = History;
 
+
 // Array.prototype.remove = function(e, t) {
 //   console.log('Array.prototype remove:::', ele);
 //   var n = e(this).call(this, (t || e) + 1 || this.length);
