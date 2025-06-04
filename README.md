@@ -37,4 +37,4 @@ x.sign(w).then((res) => {
   console.log('h5st==>',res['h5st']);
 });
 ```
-  
+PS:说得不对的，各位大佬帮忙指正，谢谢支持！
