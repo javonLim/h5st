@@ -27,6 +27,7 @@
 - 10.跟第4部分有关联 做了base64加密
 
 有两种方法取得h5st，一般大佬都用纯算，咱们小菜鸟只会补环境！
+
 ### 步骤：
 直接全局搜索h5st 找到  x.sign(w); 的位置下条件断点：w.functionId == 'unionSearchRecommend'，然后单步进入
 将整个加密js_security_v3_0.1.5.js拉到本地，通过Promise.then取出h5st，主要的工作是一直补环境即可。
